@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  --color-brand-gold: #C5A86D;
+  --color-brand-gold-light: #D4BE91;
+  --color-brand-offwhite: #F9F9F9;
+  --color-brand-dark: #1A1A1A;
+  --color-brand-chumbo: #111111;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-offwhite text-brand-dark font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif leading-tight;
+  }
+}
+
+/* Custom conceptual utilities */
+.text-outline {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+.glass-card {
+  @apply bg-white/40 backdrop-blur-xl border border-white/20;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-wave {
+  animation: wave 4s ease-in-out infinite;
+}
