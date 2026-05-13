@@ -112,6 +112,7 @@ function Navbar() {
           <a href="#experiencia" className="hover:text-brand-gold transition-colors">A Experiência</a>
           <a href="#servicos" className="hover:text-brand-gold transition-colors">Design de Sorriso</a>
           <a href="#equipe" className="hover:text-brand-gold transition-colors">Corpo clínico</a>
+          <a href="#unidades" className="hover:text-brand-gold transition-colors">Unidades</a>
           <motion.a 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -152,6 +153,7 @@ function Navbar() {
           <a href="#experiencia" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Experiência</a>
           <a href="#servicos" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Serviços</a>
           <a href="#equipe" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Especialistas</a>
+          <a href="#unidades" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Unidades</a>
           <a href="#contato" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Contato</a>
           
           <div className="pt-12">
@@ -525,7 +527,7 @@ function Locations() {
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-white">
+    <section id="unidades" className="py-32 px-6 md:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between md:items-end mb-20 gap-8 text-left">
           <div>
