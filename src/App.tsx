@@ -86,7 +86,7 @@ function Navbar() {
           <img 
             src={logo} 
             alt="Luminni Logo" 
-            className={`h-10 md:h-14 w-auto object-contain transition-all duration-500 ${
+            className={`h-8 sm:h-10 md:h-14 w-auto object-contain transition-all duration-500 ${
               scrolled ? "brightness-110" : ""
             }`} 
           />
@@ -126,10 +126,10 @@ function Navbar() {
           <button className="absolute top-8 right-8 text-white p-4" onClick={() => setIsOpen(false)}>
             <X size={40} />
           </button>
-          <a href="#experiencia" onClick={() => setIsOpen(false)} className="text-5xl font-serif text-white hover:italic hover:text-brand-gold">Experiência</a>
-          <a href="#servicos" onClick={() => setIsOpen(false)} className="text-5xl font-serif text-white hover:italic hover:text-brand-gold">Serviços</a>
-          <a href="#equipe" onClick={() => setIsOpen(false)} className="text-5xl font-serif text-white hover:italic hover:text-brand-gold">Especialistas</a>
-          <a href="#contato" onClick={() => setIsOpen(false)} className="text-5xl font-serif text-white hover:italic hover:text-brand-gold">Contato</a>
+          <a href="#experiencia" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Experiência</a>
+          <a href="#servicos" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Serviços</a>
+          <a href="#equipe" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Especialistas</a>
+          <a href="#contato" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Contato</a>
         </motion.div>
       )}
     </AnimatePresence>
@@ -150,7 +150,7 @@ function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[110vh] overflow-hidden flex flex-col items-center pt-48 pb-20 px-6">
+    <section ref={containerRef} className="relative min-h-[100vh] md:min-h-[110vh] overflow-hidden flex flex-col items-center pt-32 pb-12 md:pt-48 md:pb-20 px-6">
       <div className="absolute inset-0 bg-white z-0" />
       
       <motion.div 
@@ -161,15 +161,15 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="flex items-center justify-center space-x-4 mb-4"
+          className="flex items-center justify-center space-x-2 md:space-x-4 mb-4"
         >
-          <div className="h-px w-12 bg-brand-gold" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-brand-gold">Excellence in Dental Care</span>
-          <div className="h-px w-12 bg-brand-gold" />
+          <div className="h-px w-8 md:w-12 bg-brand-gold" />
+          <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] text-brand-gold whitespace-nowrap">Excellence in Dental Care</span>
+          <div className="h-px w-8 md:w-12 bg-brand-gold" />
         </motion.div>
 
         <motion.h1 
-          className="text-7xl lg:text-9xl font-serif text-brand-dark leading-[0.9] mb-12 tracking-tight"
+          className="text-5xl sm:text-7xl lg:text-9xl font-serif text-brand-dark leading-[1.1] lg:leading-[0.9] mb-8 md:mb-12 tracking-tight px-2"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -177,11 +177,11 @@ function Hero() {
           A tecnologia e a precisão que o seu <i className="text-brand-gold italic">sorriso</i> merece.
         </motion.h1>
 
-        <div className="flex flex-col items-center space-y-8 mb-20">
-          <p className="text-xl text-gray-500 max-w-2xl leading-relaxed">
+        <div className="flex flex-col items-center space-y-8 mb-12 md:mb-20">
+          <p className="text-lg md:text-xl text-gray-500 max-w-2xl leading-relaxed px-4">
             Esqueça a odontologia tradicional. Na Luminni, unimos ciência avançada, estética refinada e um cuidado humanizado para transformar a sua saúde bucal em Balneário Camboriú e Itajaí.
           </p>
-          <div className="absolute right-10 bottom-0 md:bottom-20">
+          <div className="absolute -right-4 bottom-0 md:right-10 md:bottom-20 scale-75 md:scale-100 z-20">
             <SpinningText />
           </div>
         </div>
@@ -189,7 +189,7 @@ function Hero() {
 
       <motion.div 
         style={{ scale }}
-        className="w-full max-w-screen-2xl aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl relative"
+        className="w-full max-w-screen-2xl aspect-[4/3] md:aspect-[21/9] rounded-[30px] md:rounded-[40px] overflow-hidden shadow-2xl relative"
       >
         <img 
           src={heroImg} 
@@ -210,8 +210,8 @@ function Stats() {
   ];
 
   return (
-    <section className="py-32 px-12 bg-white">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8">
+    <section className="py-16 md:py-32 px-6 md:px-12 bg-white">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 md:gap-8">
         {data.map((stat, i) => (
           <motion.div 
             key={i} 
@@ -221,7 +221,7 @@ function Stats() {
             transition={{ delay: i * 0.2 }}
             className="text-center group"
           >
-            <div className="text-8xl font-serif text-brand-dark group-hover:text-brand-gold transition-colors duration-500">{stat.num}</div>
+            <div className="text-6xl md:text-8xl font-serif text-brand-dark group-hover:text-brand-gold transition-colors duration-500">{stat.num}</div>
             <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mt-2">{stat.label}</div>
           </motion.div>
         ))}
@@ -232,13 +232,13 @@ function Stats() {
 
 function Experience() {
   return (
-    <section id="experiencia" className="py-48 px-6 bg-brand-dark text-white relative">
+    <section id="experiencia" className="py-24 md:py-48 px-6 bg-brand-dark text-white relative">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
         <div>
-          <h2 className="text-6xl lg:text-8xl mb-12">
+          <h2 className="text-4xl md:text-6xl lg:text-8xl mb-8 md:mb-12">
             Onde o cuidado se torna <i className="text-brand-gold italic">arte</i>. 
           </h2>
-          <p className="text-gray-400 text-xl leading-relaxed mb-12 max-w-lg">
+          <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-12 max-w-lg">
             Sua saúde bucal merece mais do que um procedimento. Na Luminni, cada detalhe é planejado para que a tecnologia de ponta e o conforto absoluto transformem sua percepção sobre ir ao dentista.
           </p>
           <div className="space-y-8">
@@ -267,7 +267,7 @@ function Experience() {
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            className="w-full h-full rounded-[60px] overflow-hidden shadow-2xl relative z-10"
+            className="w-full h-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl relative z-10"
           >
             <img 
               src={clinicImg} 
@@ -275,7 +275,7 @@ function Experience() {
               className="w-full h-full object-cover"
             />
           </motion.div>
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-gold rounded-full flex items-center justify-center text-brand-dark animate-spin-slow mix-blend-screen z-20">
+          <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 w-32 h-32 md:w-48 md:h-48 bg-brand-gold rounded-full flex items-center justify-center text-brand-dark animate-spin-slow mix-blend-screen z-20 scale-90 md:scale-100">
             <svg viewBox="0 0 100 100" className="w-4/5 h-4/5">
               <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
               <text className="text-[12px] font-bold uppercase tracking-[0.1em] fill-black">
@@ -309,9 +309,9 @@ const services = [
 
 function Services() {
   return (
-    <section id="servicos" className="py-48 px-12 bg-white">
+    <section id="servicos" className="py-24 md:py-48 px-6 md:px-12 bg-white">
       <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between mb-24 gap-12">
-        <h2 className="text-6xl lg:text-8xl max-w-3xl leading-[0.9]">
+        <h2 className="text-4xl md:text-6xl lg:text-8xl max-w-3xl leading-[1.1] lg:leading-[0.9]">
           Tudo o que você precisa para <i className="text-brand-gold italic">sorrir com segurança</i>.
         </h2>
         <div className="max-w-md self-end">
@@ -326,7 +326,7 @@ function Services() {
           <motion.div 
             key={i} 
             whileHover={{ y: -20 }}
-            className="flex flex-col space-y-8"
+            className="flex flex-col space-y-6 md:space-y-8"
           >
             <div className="aspect-[3/4] rounded-[40px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-xl">
               <img src={item.img} alt={item.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
@@ -374,11 +374,11 @@ const team = [
 
 function Team() {
   return (
-    <section id="equipe" className="py-48 px-12 bg-brand-offwhite">
+    <section id="equipe" className="py-24 md:py-48 px-6 md:px-12 bg-brand-offwhite">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-12">
           <div className="max-w-2xl">
-            <h2 className="text-6xl lg:text-8xl leading-tight mb-8">Especialistas <i className="text-brand-gold italic">apaixonados</i> por excelência.</h2>
+            <h2 className="text-4xl md:text-6xl lg:text-8xl leading-tight mb-8">Especialistas <i className="text-brand-gold italic">apaixonados</i> por excelência.</h2>
             <div className="h-1 w-24 bg-brand-gold mb-8" />
           </div>
           <p className="max-w-md text-gray-500 text-lg leading-relaxed mb-4">
@@ -421,10 +421,10 @@ function Team() {
 
 function Testimonials() {
   return (
-    <section className="py-48 px-6 bg-white overflow-hidden">
+    <section className="py-24 md:py-48 px-6 bg-white overflow-hidden">
       <div className="max-w-5xl mx-auto text-center relative">
-        <Quote className="absolute -top-12 -left-12 text-brand-gold/10" size={160} />
-        <h2 className="text-4xl lg:text-6xl leading-[1.1] font-serif mb-20 italic">
+        <Quote className="absolute -top-8 -left-4 md:-top-12 md:-left-12 text-brand-gold/10 w-24 h-24 md:w-40 md:h-40" />
+        <h2 className="text-2xl md:text-4xl lg:text-6xl leading-[1.2] md:leading-[1.1] font-serif mb-12 md:mb-20 italic px-4">
           "A assinatura do nosso trabalho é a <i className="text-brand-gold not-italic">confiança</i> de quem sorri pela primeira vez após o tratamento."
         </h2>
         <div className="flex flex-col items-center">
@@ -448,8 +448,8 @@ function Testimonials() {
 
 function ContactCTA() {
   return (
-    <section id="contato" className="py-20 px-6 md:px-12 bg-white">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 bg-brand-dark rounded-[40px] md:rounded-[60px] p-10 md:p-20 text-white relative overflow-hidden group">
+    <section id="contato" className="py-12 md:py-20 px-4 md:px-12 bg-white">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 md:gap-12 bg-brand-dark rounded-[30px] md:rounded-[60px] p-8 md:p-20 text-white relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-full h-full overflow-hidden">
            <img 
             src={ctaImg} 
@@ -460,18 +460,20 @@ function ContactCTA() {
         </div>
         
         <div className="relative z-10 lg:w-3/5">
-          <h2 className="text-5xl md:text-8xl leading-[0.9] mb-12">
+          <h2 className="text-4xl md:text-6xl lg:text-8xl leading-[1.1] md:leading-[0.9] mb-8 md:mb-12">
             A melhor versão do seu <i className="text-brand-gold italic">sorriso</i> começa aqui.
           </h2>
         </div>
 
         <div className="relative z-10 lg:w-2/5 flex items-center justify-center">
           <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full md:w-auto bg-brand-gold text-brand-dark px-12 py-8 rounded-full font-bold text-lg uppercase tracking-widest hover:bg-white transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full md:w-auto bg-brand-gold text-brand-dark px-6 md:px-12 py-5 md:py-8 rounded-full font-bold text-[11px] md:text-lg uppercase tracking-[0.15em] hover:bg-white transition-all shadow-2xl flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap"
           >
             Quero agendar agora
+            <ArrowUpRight size={20} className="hidden md:block" />
+            <ChevronRight size={16} className="md:hidden" />
           </motion.button>
         </div>
       </div>
@@ -500,8 +502,8 @@ function Locations() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between md:items-end mb-20 gap-8 text-left">
           <div>
-            <span className="text-brand-gold font-bold uppercase tracking-widest text-[10px] mb-4 block">Onde estamos</span>
-            <h2 className="text-5xl md:text-7xl font-serif">Nossas <i className="text-brand-gold italic">Unidades</i></h2>
+            <span className="text-brand-gold font-bold uppercase tracking-widest text-[8px] md:text-[10px] mb-4 block">Onde estamos</span>
+            <h2 className="text-4xl md:text-7xl font-serif">Nossas <i className="text-brand-gold italic">Unidades</i></h2>
           </div>
           <p className="max-w-xs text-gray-400 text-sm leading-relaxed md:text-right">
             Escolha a unidade mais próxima de você e vivencie o padrão Luminni de atendimento.
@@ -554,7 +556,7 @@ function Locations() {
 }
 
 const Footer = () => (
-  <footer className="py-20 px-12 bg-white border-t border-gray-100">
+  <footer className="py-16 md:py-20 px-6 md:px-12 bg-white border-t border-gray-100">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
       <div className="flex items-center">
         <img src={logo} alt="Luminni Logo" className="h-8 w-auto object-contain brightness-0 grayscale opacity-80" />
