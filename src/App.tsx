@@ -69,16 +69,30 @@ function Navbar() {
   const { scrollY } = useScroll();
   
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50);
+    // Adicionamos uma pequena histerese para evitar o "flicker" no mobile
+    if (latest > 80 && !scrolled) setScrolled(true);
+    if (latest < 20 && scrolled) setScrolled(false);
   });
+
+  // Bloquear o scroll quando o menu mobile estiver aberto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   return (
     <>
     <nav 
-      className={`fixed top-0 left-0 w-full z-50 py-4 px-6 md:px-12 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 px-6 md:px-12 transition-all duration-500 will-change-transform ${
         scrolled 
-          ? "bg-brand-dark/95 backdrop-blur-md border-b border-white/5 py-4" 
-          : "bg-transparent py-8"
+          ? "bg-brand-dark/95 backdrop-blur-md border-b border-white/5 py-4 shadow-lg" 
+          : "bg-transparent py-6 md:py-10"
       }`}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
@@ -87,7 +101,7 @@ function Navbar() {
             src={logo} 
             alt="Luminni Logo" 
             className={`h-8 sm:h-10 md:h-14 w-auto object-contain transition-all duration-500 ${
-              scrolled ? "brightness-110" : ""
+              scrolled ? "brightness-110" : "brightness-100"
             }`} 
           />
         </div>
@@ -100,6 +114,7 @@ function Navbar() {
           <a href="#equipe" className="hover:text-brand-gold transition-colors">Corpo clínico</a>
           <motion.a 
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#contato" 
             className={`px-8 py-3 rounded-full transition-all shadow-xl ${
               scrolled ? "bg-brand-gold text-brand-dark hover:bg-white" : "bg-brand-dark text-white hover:bg-brand-gold"
@@ -109,8 +124,12 @@ function Navbar() {
           </motion.a>
         </div>
 
-        <button className={scrolled ? "md:hidden text-white" : "md:hidden text-brand-dark"} onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={32} /> : <Menu size={32} />}
+        <button 
+          className={`md:hidden p-2 transition-colors ${scrolled ? "text-white" : "text-brand-dark"}`} 
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Abrir menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
     </nav>
@@ -118,18 +137,26 @@ function Navbar() {
     <AnimatePresence>
       {isOpen && (
         <motion.div 
-          initial={{ opacity: 0, x: "100%" }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "100%" }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
           className="fixed inset-0 bg-brand-dark z-[100] flex flex-col items-center justify-center space-y-12"
         >
-          <button className="absolute top-8 right-8 text-white p-4" onClick={() => setIsOpen(false)}>
+          <button 
+            className="absolute top-8 right-8 text-white p-4 hover:rotate-90 transition-transform" 
+            onClick={() => setIsOpen(false)}
+            aria-label="Fechar menu"
+          >
             <X size={40} />
           </button>
-          <a href="#experiencia" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Experiência</a>
-          <a href="#servicos" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Serviços</a>
-          <a href="#equipe" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Especialistas</a>
-          <a href="#contato" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold">Contato</a>
+          <a href="#experiencia" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Experiência</a>
+          <a href="#servicos" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Serviços</a>
+          <a href="#equipe" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Especialistas</a>
+          <a href="#contato" onClick={() => setIsOpen(false)} className="text-3xl sm:text-5xl font-serif text-white hover:italic hover:text-brand-gold transition-all">Contato</a>
+          
+          <div className="pt-12">
+             <img src={logo} alt="Logo" className="h-8 opacity-20 invert" />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -150,7 +177,7 @@ function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100vh] md:min-h-[110vh] overflow-hidden flex flex-col items-center pt-32 pb-12 md:pt-48 md:pb-20 px-6">
+    <section ref={containerRef} className="relative min-h-[100dvh] md:min-h-[110vh] overflow-hidden flex flex-col items-center pt-32 pb-12 md:pt-48 md:pb-20 px-6">
       <div className="absolute inset-0 bg-white z-0" />
       
       <motion.div 
